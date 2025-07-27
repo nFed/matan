@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מתן איילה - בין עבר לעתיד | הרצאה מעוררת השראה</title>
+    <meta name="description" content="סיפור על זהות וצמיחה - הרצאה מעוררת השראה עם מתן איילה על התמודדות עם אתגרים וצמיחה אישית">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            padding: 60px 0 80px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #2c3e50 50%, #e74c3c 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,192L48,181.3C96,171,192,149,288,154.7C384,160,480,192,576,192C672,192,768,160,864,149.3C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            opacity: 0.3;
+            animation: wave 10s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-50px); }
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+            color: #f39c12;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-email {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-email:hover {
+            background: white;
+            color: #2c3e50;
+        }
+        
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease 0.8s both;
+        }
+        
+        .image-container {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 5px solid rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-placeholder {
+            font-size: 8rem;
+            color: white;
+            opacity: 0.8;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #e74c3c;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffe6e6 0%, #fff3e6 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border-right: 4px solid #e74c3c;
+            margin: 20px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        /* Topics Grid */
+        .topics-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .topic-card {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+            border-image: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
+            border-image-slice: 1;
+            text-align: center;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .topic-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .topic-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .topic-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Speaker Section */
+        .speaker-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .speaker-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        
+        .speaker-image-full {
+            width: 350px;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .speaker-image-full::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+        
+        .speaker-bio h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .speaker-subtitle {
+            font-size: 1.3rem;
+            color: #e74c3c;
+            margin-bottom: 2rem;
+        }
+        
+        .bio-text {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .achievement-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .achievement-list li {
+            padding: 15px 0;
+            padding-right: 40px;
+            position: relative;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .achievement-list li::before {
+            content: '🌟';
+            position: absolute;
+            right: 0;
+            font-size: 1.5rem;
+        }
+        
+        /* Testimonials */
+        .testimonials-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 4rem;
+            color: #f39c12;
+            opacity: 0.3;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .testimonial-role {
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L60,112C120,128,240,160,360,160C480,160,600,128,720,112C840,96,960,96,1080,112C1200,128,1320,160,1380,176L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>');
+            background-size: cover;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-section .section-title {
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-section .section-title::after {
+            background: white;
+        }
+        
+        .contact-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-contact {
+            padding: 20px 50px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-contact-whatsapp {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-contact-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+        
+        .btn-contact-email {
+            background: white;
+            color: #2c3e50;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-contact-email:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: #f39c12;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content, .about-content, .speaker-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .topics-grid, .testimonials {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-container {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .speaker-image-full {
+                width: 100%;
+                height: 350px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn-contact {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">מתן איילה</div>
+                <ul class="nav-links">
+                    <li><a href="#home">בית</a></li>
+                    <li><a href="#about">אודות</a></li>
+                    <li><a href="#topics">נושאים</a></li>
+                    <li><a href="#speaker">המרצה</a></li>
+                    <li><a href="#testimonials">המלצות</a></li>
+                    <li><a href="#contact">צור קשר</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>בין עבר לעתיד</h1>
+                    <p class="hero-subtitle">סיפור על זהות וצמיחה</p>
+                    <p class="hero-description">
+                        סיפורו היחודי והמפתל של הצעיר הנאי מתן אילה שחוזר במסע אל תחנות שהשפיעו על חייו כילד בן 10 שעלה לבדו לארץ. חדשה, מבלי לדעת מילה בעברית והשאיר מאחור את אימו ואחותו.
+                    </p>
+                    <p class="hero-description">
+                        סיפור שמחבר בין אהבה, כאב וסרגדיה - אבין שאותו לא זכה להכיר, יחסים מורכבים עם אימו הביולוגית, שמסרה אותו לאימוץ בגיל שנה. עיצוב זהותו החדשה כנער במשפחה המאמצת ושעברה סרגדית.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/972501234567" class="btn btn-whatsapp">
+                            💬 דברו איתי בוואטסאפ
+                        </a>
+                        <a href="mailto:info@example.com" class="btn btn-email">
+                            ✉️ שלחו מייל
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-container">
+                        <!-- כאן תוכל להוסיף את התמונה של מתן איילה -->
+                        <span class="image-placeholder">👤</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">אודות ההרצאה</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>מסע מרתק אל הלב האנושי</h3>
+                    <p>
+                        ההרצאה של מתן איילה היא חוויה מעוררת השראה שלוקחת את הקהל למסע אישי ומרגש. דרך סיפורו האישי, מתן מזמין אותנו להתבונן על משמעות הזהות, כוחה של הבחירה, והיכולת לצמוח מתוך אתגרים.
+                    </p>
+                    <div class="highlight-box">
+                        <h4>מה תקבלו בהרצאה?</h4>
+                        <p>השראה להתמודדות עם אתגרים | כלים לחיזוק החוסן הנפשי | פרספקטיבה חדשה על זהות וצמיחה | סיפור אנושי מרגש ומחבר</p>
+                    </div>
+                    <p>
+                        ההרצאה מתאימה לארגונים המעוניינים בחיזוק הלכידות והמוטיבציה של העובדים, וכן לבתי ספר ומוסדות חינוך המעוניינים להעניק לתלמידים השראה והעצמה.
+                    </p>
+                </div>
+                <div class="about-text">
+                    <h3>למי מתאימה ההרצאה?</h3>
+                    <p>
+                        <strong>לארגונים וחברות:</strong> צוותים המעוניינים בהשראה, חיזוק הלכידות ופיתוח חוסן ארגוני.
+                    </p>
+                    <p>
+                        <strong>למוסדות חינוך:</strong> תיכונים, מכללות ואוניברסיטאות המעוניינים להעניק לסטודנטים פרספקטיבה מעצימה.
+                    </p>
+                    <p>
+                        <strong>לקהילות וארגונים חברתיים:</strong> קבוצות המעוניינות בסיפורי השראה על התמודדות וצמיחה.
+                    </p>
+                    <div class="highlight-box">
+                        <h4>פורמט גמיש</h4>
+                        <p>הרצאה פרונטלית | וובינר אונליין | סדנה אינטראקטיבית | התאמה לצרכי הארגון</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="topics-section" id="topics">
+        <div class="container">
+            <h2 class="section-title">נושאי ההרצאה</h2>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <span class="topic-icon">🌱</span>
+                    <h4>זהות וצמיחה</h4>
+                    <p>איך מגדירים את עצמנו מחדש כשהעבר מורכב? מסע אל גילוי הזהות האמיתית</p>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">💪</span>
+                    <h4>כוח ההתמודדות</h4>
+                    <p>הפיכת אתגרים למנועי צמיחה - סיפור אישי על התמודדות עם קשיים</p>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">🔗</span>
+                    <h4>קשרים משפחתיים</h4>
+                    <p>מורכבות היחסים המשפחתיים וההשפעה שלהם על עיצוב האישיות</p>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">🌍</span>
+                    <h4>תרבות ושייכות</h4>
+                    <p>החיבור בין תרבויות שונות והמסע למציאת מקום בעולם</p>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">🎯</span>
+                    <h4>בחירה ומשמעות</h4>
+                    <p>כוחה של הבחירה בעיצוב החיים - איך להפוך את הגורל לייעוד</p>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">❤️</span>
+                    <h4>אהבה וסליחה</h4>
+                    <p>המסע לסליחה עצמית וסליחה לאחרים כמפתח לחיים מלאים</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Section -->
+    <section class="speaker-section" id="speaker">
+        <div class="container">
+            <h2 class="section-title">על המרצה</h2>
+            <div class="speaker-content">
+                <div class="speaker-image-full">
+                    <!-- כאן תוכל להוסיף תמונה של מתן -->
+                    <span class="image-placeholder" style="font-size: 10rem;">👤</span>
+                </div>
+                <div class="speaker-bio">
+                    <h3>מתן איילה</h3>
+                    <p class="speaker-subtitle">מרצה מעורר השראה | סיפור חיים מרתק</p>
+                    <div class="bio-text">
+                        <p>
+                            מתן איילה, בעל סיפור חיים יוצא דופן ומעורר השראה. נולד באתיופיה ועלה לארץ בגיל 10 לבדו, ללא הוריו וללא ידיעת השפה העברית. מסעו האישי מילדות מאתגרת להצלחה מקצועית ואישית הוא עדות חיה לכוחו של הרצון האנושי.
+                        </p>
+                        <p>
+                            סיפורו של מתן עובר דרך תחנות חיים משמעותיות - מהפרידה מאמו הביולוגית שמסרה אותו לאימוץ, דרך החיים במשפחה המאמצת, ועד לבניית זהותו העצמאית כבוגר. מתן הצליח להפוך את האתגרים למנועי צמיחה ולבנות חיים של משמעות ותרומה.
+                        </p>
+                        <p>
+                            כיום, מתן משתף את סיפורו במסגרות שונות - ארגונים, מוסדות חינוך וקהילות. הרצאותיו נוגעות בלבבות ומעניקות השראה לאלפי אנשים לראות את האתגרים שלהם באור חדש.
+                        </p>
+                    </div>
+                    <ul class="achievement-list">
+                        <li>מרצה מנוסה עם מאות הרצאות ברחבי הארץ</li>
+                        <li>סיפור חיים שמעורר השראה ומחבר קהלים מגוונים</li>
+                        <li>ניסיון בעבודה עם ארגונים, בתי ספר וקהילות</li>
+                        <li>יכולת ייחודית לגעת ולהניע אנשים לשינוי</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">מה אומרים על ההרצאה</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "מתן הצליח לרתק את כל העובדים שלנו. הסיפור האישי שלו נתן לכולנו פרספקטיבה חדשה על התמודדות עם אתגרים. הרצאה מעוררת השראה באמת!"
+                    </p>
+                    <div class="testimonial-author">רונית כהן</div>
+                    <div class="testimonial-role">מנהלת משאבי אנוש, חברת הייטק</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "התלמידים שלנו יצאו מההרצאה עם מוטיבציה חדשה. הסיפור של מתן על התמודדות וצמיחה נגע בכולם. ממליצה בחום לכל מוסד חינוכי!"
+                    </p>
+                    <div class="testimonial-author">ד"ר מיכל לוי</div>
+                    <div class="testimonial-role">מנהלת תיכון</div>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">
+                        "הרצאה מרגשת ומעצימה. מתן מצליח לקחת את הקהל למסע אישי ולהעביר מסרים חשובים על זהות, שייכות והכוח לבחור את הדרך שלנו."
+                    </p>
+                    <div class="testimonial-author">אבי שפירא</div>
+                    <div class="testimonial-role">מנכ"ל ארגון חברתי</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section - NEW -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">רגעים מהרצאות קודמות</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">📸</div>
+                    <!-- <img src="gallery1.jpg" alt="הרצאה בארגון"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎤</div>
+                    <!-- <img src="gallery2.jpg" alt="הרצאה בבית ספר"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">👥</div>
+                    <!-- <img src="gallery3.jpg" alt="קהל מקשיב"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🌟</div>
+                    <!-- <img src="gallery4.jpg" alt="רגע מרגש בהרצאה"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">💬</div>
+                    <!-- <img src="gallery5.jpg" alt="שיחה עם משתתפים"> -->
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎯</div>
+                    <!-- <img src="gallery6.jpg" alt="סדנה אינטראקטיבית"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">בואו נדבר על ההרצאה הבאה שלכם</h2>
+                <p class="contact-subtitle">
+                    מעוניינים להזמין את מתן איילה להרצאה בארגון שלכם?<br>
+                    צרו קשר ונשמח לתאם הרצאה שתתאים בדיוק לצרכים שלכם
+                </p>
+                <div style="margin: 20px 0; font-size: 1.2rem; opacity: 0.9;">
+                    📧 matan.ayala@example.com
+                </div>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/972501234567?text=שלום מתן, אני מעוניין/ת בהרצאה עבור הארגון שלנו" class="btn-contact btn-contact-whatsapp">
+                        <span>💬</span>
+                        <span>שלחו הודעת וואטסאפ</span>
+                    </a>
+                    <a href="mailto:matan.ayala@example.com?subject=בקשה להרצאה - בין עבר לעתיד&body=שלום מתן,%0D%0A%0D%0Aאני מעוניין/ת בהרצאה עבור:%0D%0A%0D%0Aשם הארגון:%0D%0Aמספר משתתפים משוער:%0D%0Aתאריך מועדף:%0D%0A%0D%0Aאשמח לקבל פרטים נוספים.%0D%0A%0D%0Aתודה!" class="btn-contact btn-contact-email">
+                        <span>✉️</span>
+                        <span>שלחו מייל</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 מתן איילה - כל הזכויות שמורות</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+                header.style.boxShadow = '0 5px 30px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '1rem 0';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.topic-card, .testimonial, .about-text').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Replace phone number and email with actual contact details
+        // Update these with real contact information:
+        // WhatsApp: https://wa.me/972501234567 (change to real number)
+        // Email: mailto:matan@example.com (change to real email)
+    </script>
+</body>
+</html>
