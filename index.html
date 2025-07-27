@@ -11,45 +11,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-content, .about-content, .speaker-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .topics-grid, .testimonials {
-                grid-template-columns: 1fr;
-            }
-            
-            .image-container {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .speaker-image-full {
-                width: 100%;
-                height: 350px;
-            }
-            
-            .contact-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn-contact {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
         }
         
         body {
@@ -127,7 +88,18 @@
             width: 100%;
         }
         
-        /* Fine-tuning colors and gradients */
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+            padding: 5px;
+        }
+        
+        /* Hero Section */
         .hero {
             margin-top: 60px;
             padding: 60px 0 80px;
@@ -137,18 +109,6 @@
             min-height: calc(100vh - 60px);
             display: flex;
             align-items: center;
-        }
-        
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-        
-        .btn-whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
-            background: #128C7E;
         }
         
         .hero::before {
@@ -694,17 +654,9 @@
             to { opacity: 1; }
         }
         
-        /* Mobile menu toggle */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #333;
-        }
-        
+        /* MOBILE RESPONSIVE - Fixed and Improved */
         @media (max-width: 768px) {
+            /* Navigation */
             .menu-toggle {
                 display: block;
             }
@@ -734,6 +686,179 @@
             
             .nav-links a {
                 font-size: 1.2rem;
+            }
+            
+            /* Hero Section */
+            .hero {
+                padding: 40px 0;
+                min-height: auto;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+                padding: 0 10px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .image-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .image-placeholder {
+                font-size: 5rem;
+            }
+            
+            /* About Section */
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .about-text {
+                padding: 25px;
+            }
+            
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+            
+            /* Topics Grid */
+            .topics-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .topic-card {
+                padding: 25px;
+            }
+            
+            /* Speaker Section */
+            .speaker-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .speaker-image-full {
+                width: 100%;
+                max-width: 300px;
+                height: 350px;
+                margin: 0 auto;
+            }
+            
+            .speaker-bio h3 {
+                font-size: 2rem;
+            }
+            
+            .achievement-list li {
+                padding-right: 35px;
+                font-size: 0.95rem;
+            }
+            
+            /* Testimonials */
+            .testimonials {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .testimonial {
+                padding: 25px;
+            }
+            
+            /* Gallery */
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* Contact Section */
+            .contact-section {
+                padding: 60px 0;
+            }
+            
+            .contact-subtitle {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 0 20px;
+            }
+            
+            .btn-contact {
+                width: 100%;
+                max-width: 300px;
+                padding: 15px 30px;
+                font-size: 1rem;
+                justify-content: center;
+            }
+            
+            /* Section Title */
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            /* General spacing adjustments */
+            .about-section,
+            .topics-section,
+            .speaker-section,
+            .testimonials-section,
+            .gallery-section {
+                padding: 50px 0;
+            }
+        }
+        
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .container {
+                padding: 0 15px;
             }
         }
     </style>
