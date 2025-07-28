@@ -6,11 +6,45 @@
     <title>מתן איילה - בין עבר לעתיד | הרצאה מעוררת השראה</title>
     <meta name="description" content="סיפור על זהות וצמיחה - הרצאה מעוררת השראה עם מתן איילה על התמודדות עם אתגרים וצמיחה אישית">
     
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://wa.me">
+    <meta name="format-detection" content="telephone=no">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        /* CSS Variables for consistency */
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --dark-color: #2c3e50;
+            --light-gray: #f8f9fa;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --shadow-light: 0 5px 20px rgba(0,0,0,0.08);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.12);
+            --shadow-heavy: 0 20px 40px rgba(0,0,0,0.15);
+            --border-radius: 20px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
         
         body {
@@ -27,6 +61,57 @@
             padding: 0 20px;
         }
         
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: var(--transition);
+            z-index: 1001;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        /* Mobile overlay */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+        
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         /* Header & Navigation */
         header {
             background: rgba(255, 255, 255, 0.98);
@@ -35,8 +120,8 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
         }
         
         nav {
@@ -50,7 +135,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
-            background: linear-gradient(135deg, #2c3e50 0%, #e74c3c 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -65,8 +150,9 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: var(--transition);
             position: relative;
+            padding: 8px 0;
         }
         
         .nav-links a::after {
@@ -74,17 +160,19 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             right: 0;
-            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 100%);
-            transition: width 0.3s ease;
+            background: var(--gradient-primary);
+            transition: var(--transition);
         }
         
-        .nav-links a:hover {
-            color: #e74c3c;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
         }
         
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
         }
         
@@ -96,14 +184,23 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: #333;
-            padding: 5px;
+            padding: 8px;
+            min-width: 44px;
+            min-height: 44px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(0,0,0,0.05);
         }
         
         /* Hero Section */
         .hero {
             margin-top: 60px;
             padding: 60px 0 80px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #34495e 25%, #e74c3c 75%, #f39c12 100%);
+            background: var(--dark-color);
+            background: linear-gradient(135deg, #1a1a2e 0%, #34495e 25%, var(--primary-color) 75%, var(--secondary-color) 100%);
             position: relative;
             overflow: hidden;
             min-height: calc(100vh - 60px);
@@ -121,12 +218,14 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" d="M0,192L48,181.3C96,171,192,149,288,154.7C384,160,480,192,576,192C672,192,768,160,864,149.3C960,139,1056,149,1152,165.3C1248,181,1344,203,1392,213.3L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
             background-size: cover;
             opacity: 0.3;
-            animation: wave 10s ease-in-out infinite;
+            animation: wave 15s ease-in-out infinite;
+            will-change: transform;
         }
         
         @keyframes wave {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-50px); }
+            0%, 100% { transform: translateX(0) scale(1); }
+            33% { transform: translateX(-30px) scale(1.02); }
+            66% { transform: translateX(-60px) scale(0.98); }
         }
         
         .hero-content {
@@ -145,7 +244,7 @@
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: fadeInUp 0.8s ease;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             line-height: 1.2;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -154,8 +253,8 @@
             font-size: 1.5rem;
             margin-bottom: 2rem;
             opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            color: #f39c12;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            color: var(--secondary-color);
         }
         
         .hero-description {
@@ -163,14 +262,14 @@
             line-height: 1.8;
             margin-bottom: 2rem;
             opacity: 0.9;
-            animation: fadeInUp 0.8s ease 0.4s both;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
         }
         
         .hero-buttons {
             display: flex;
             gap: 1rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease 0.6s both;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s both;
             flex-wrap: wrap;
         }
         
@@ -181,11 +280,14 @@
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            min-height: 44px;
+            min-width: 120px;
+            justify-content: center;
         }
         
         .btn-whatsapp {
@@ -207,12 +309,13 @@
         
         .btn-email:hover {
             background: white;
-            color: #2c3e50;
+            color: var(--dark-color);
+            transform: translateY(-2px);
         }
         
         .hero-image {
             position: relative;
-            animation: fadeIn 1s ease 0.8s both;
+            animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
         }
         
         .image-container {
@@ -222,9 +325,9 @@
             position: relative;
             border-radius: 50%;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow-heavy);
             border: 5px solid rgba(255,255,255,0.1);
-            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -234,6 +337,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .image-container:hover img {
+            transform: scale(1.05);
         }
         
         .image-placeholder {
@@ -373,14 +481,25 @@
         .speaker-image-full {
             width: 350px;
             height: 450px;
-            border-radius: 20px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+            box-shadow: var(--shadow-heavy);
+            background: var(--gradient-primary);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+        }
+        
+        .speaker-image-full img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .speaker-image-full:hover img {
+            transform: scale(1.05);
         }
         
         .speaker-image-full::before {
@@ -390,7 +509,7 @@
             right: -20px;
             width: 100px;
             height: 100px;
-            background: linear-gradient(135deg, #f39c12 0%, #e74c3c 100%);
+            background: var(--gradient-primary);
             border-radius: 50%;
             opacity: 0.3;
         }
@@ -672,27 +791,29 @@
             to { opacity: 1; }
         }
         
-        /* MOBILE RESPONSIVE - Fixed and Improved */
+        /* MOBILE RESPONSIVE - Improved */
         @media (max-width: 768px) {
             /* Navigation */
             .menu-toggle {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             .nav-links {
                 position: fixed;
                 top: 60px;
                 right: -100%;
-                width: 80%;
-                max-width: 300px;
+                width: 280px;
                 height: calc(100vh - 60px);
-                background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                background: linear-gradient(135deg, var(--dark-color) 0%, #34495e 100%);
                 flex-direction: column;
                 align-items: flex-start;
-                justify-content: start;
-                padding: 40px 30px;
-                transition: right 0.3s ease;
+                justify-content: flex-start;
+                padding: 20px;
+                transition: var(--transition);
                 box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+                z-index: 1000;
             }
             
             .nav-links.active {
@@ -700,31 +821,38 @@
             }
             
             .nav-links li {
-                margin: 25px 0;
                 width: 100%;
+                margin: 0;
             }
             
             .nav-links a {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 color: white;
                 display: block;
-                padding: 10px 0;
-                border-bottom: 1px solid rgba(255,255,255,0.1);
-                transition: all 0.3s ease;
+                padding: 12px 16px;
+                margin: 4px 0;
+                border-radius: 8px;
+                border-bottom: none;
+                transition: var(--transition);
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
             
-            .nav-links a:hover {
-                color: #f39c12;
-                padding-right: 10px;
+            .nav-links a:hover,
+            .nav-links a.active {
+                background: rgba(255,255,255,0.1);
+                color: var(--secondary-color);
+                transform: translateX(8px);
             }
             
             .nav-links a::after {
                 display: none;
             }
             
-            /* Hero Section */
+            /* Hero Section Mobile */
             .hero {
-                padding: 40px 0;
+                padding: 30px 0 40px;
                 min-height: auto;
             }
             
@@ -735,12 +863,12 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
                 margin-bottom: 0.8rem;
             }
             
             .hero-subtitle {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
                 margin-bottom: 1.5rem;
             }
             
@@ -752,14 +880,17 @@
             
             .hero-buttons {
                 justify-content: center;
-                gap: 10px;
+                gap: 12px;
+                flex-direction: column;
+                align-items: center;
             }
             
             .btn {
-                padding: 12px 25px;
-                font-size: 0.95rem;
+                padding: 14px 28px;
+                font-size: 1rem;
                 width: 100%;
-                max-width: 250px;
+                max-width: 280px;
+                min-height: 48px;
                 justify-content: center;
             }
             
@@ -768,8 +899,12 @@
                 height: 250px;
             }
             
-            .image-placeholder {
-                font-size: 5rem;
+            /* Back to top button mobile */
+            .back-to-top {
+                bottom: 80px;
+                left: 20px;
+                width: 48px;
+                height: 48px;
             }
             
             /* About Section */
@@ -817,6 +952,9 @@
             .achievement-list li {
                 padding-right: 35px;
                 font-size: 0.95rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
             }
             
             /* Testimonials */
@@ -835,7 +973,7 @@
                 gap: 20px;
             }
             
-            /* Contact Section */
+            /* Contact Section Mobile */
             .contact-section {
                 padding: 60px 0;
             }
@@ -843,6 +981,7 @@
             .contact-subtitle {
                 font-size: 1.1rem;
                 padding: 0 20px;
+                line-height: 1.6;
             }
             
             .contact-buttons {
@@ -850,14 +989,21 @@
                 align-items: center;
                 gap: 15px;
                 padding: 0 20px;
+                margin-top: 30px;
             }
             
             .btn-contact {
                 width: 100%;
                 max-width: 300px;
-                padding: 15px 30px;
+                padding: 16px 30px;
                 font-size: 1rem;
                 justify-content: center;
+                min-height: 48px;
+            }
+            
+            .btn-contact svg {
+                width: 20px;
+                height: 20px;
             }
             
             /* Section Title */
@@ -935,17 +1081,22 @@
                     </p>
                     <div class="hero-buttons">
                         <a href="https://wa.me/972501234567" class="btn btn-whatsapp">
-                            💬 דברו איתי בוואטסאפ
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                            </svg>
+                            דברו איתי בוואטסאפ
                         </a>
                         <a href="mailto:info@example.com" class="btn btn-email">
-                            ✉️ שלחו מייל
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12.713l-11.985-9.713h23.97l-11.985 9.713zm0 2.574l-12-9.725v15.438h24v-15.438l-12 9.725z"/>
+                            </svg>
+                            שלחו מייל
                         </a>
                     </div>
                 </div>
                 <div class="hero-image">
                     <div class="image-container">
-                        <!-- כאן תוכל להוסיף את התמונה של מתן איילה -->
-                        <span class="image-placeholder">👤</span>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face&auto=format" alt="מתן איילה - מרצה מעורר השראה" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1035,8 +1186,7 @@
             <h2 class="section-title">על המרצה</h2>
             <div class="speaker-content">
                 <div class="speaker-image-full">
-                    <!-- כאן תוכל להוסיף תמונה של מתן -->
-                    <span class="image-placeholder" style="font-size: 10rem;">👤</span>
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=350&h=450&fit=crop&crop=face&auto=format" alt="מתן איילה - פרופיל מלא" loading="lazy">
                 </div>
                 <div class="speaker-bio">
                     <h3>מתן איילה</h3>
@@ -1093,26 +1243,24 @@
         </div>
     </section>
 
-    <!-- Gallery Section - NEW -->
+    <!-- Gallery Section -->
     <section class="gallery-section" id="gallery">
         <div class="container">
             <h2 class="section-title">רגעים מהרצאות קודמות</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">📸</div>
-                    <!-- <img src="gallery1.jpg" alt="הרצאה בארגון"> -->
+                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop&auto=format" alt="הרצאה בפני קהל גדול" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">🎤</div>
-                    <!-- <img src="gallery2.jpg" alt="הרצאה בבית ספר"> -->
+                    <img src="https://images.unsplash.com/photo-1560439513-74b037c19d13?w=400&h=300&fit=crop&auto=format" alt="מתן על הבמה" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">👥</div>
-                    <!-- <img src="gallery3.jpg" alt="קהל מקשיב"> -->
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=300&fit=crop&auto=format" alt="קהל מעורב ומתרגש" loading="lazy">
                 </div>
                 <div class="gallery-item">
-                    <div class="gallery-placeholder">🌟</div>
-                    <!-- <img src="gallery4.jpg" alt="רגע מרגש בהרצאה"> -->
+                    <img src="https://images.unsplash.com/photo-1528901166007-3784c7dd3653?w=400&h=300&fit=crop&auto=format" alt="רגע מרגש בהרצאה" loading="lazy">
+                </div>
+            </div>🌟</div>
                 </div>
             </div>
         </div>
@@ -1211,7 +1359,7 @@
             }
         });
 
-        /* Header scroll effect update */
+        // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
@@ -1245,11 +1393,6 @@
             el.style.transition = 'all 0.6s ease';
             observer.observe(el);
         });
-
-        // Replace phone number and email with actual contact details
-        // Update these with real contact information:
-        // WhatsApp: https://wa.me/972501234567 (change to real number)
-        // Email: mailto:matan@example.com (change to real email)
     </script>
 </body>
 </html>
