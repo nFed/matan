@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>מתן איילה – בין עבר לעתיד | הרצאה מעוררת השראה על זהות וצמיחה</title>
+<meta name="description" content="סיפור אישי מרגש על עלייה לארץ, התמודדות וצמיחה. הרצאה מעוררת השראה לארגונים, מוסדות חינוך וקהילות." />
+
+<!-- ===== Open Graph & Twitter Cards (משפיע גם על WhatsApp) ===== -->
+<!-- TODO: החלף לכתובת הדומיין בפועל -->
+<link rel="canonical" href="https://example.com/" />
+<meta property="og:locale" content="he_IL" />
+<meta property="og:site_name" content="מתן איילה" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="מתן איילה – בין עבר לעתיד | הרצאה מעוררת השראה" />
+<meta property="og:description" content="סיפור על זהות וצמיחה – מסע אישי מרגש, השראה להתמודדות עם אתגרים וחוסן נפשי." />
+<!-- מומלץ 1200×630. העלה קובץ כזה לשורש האתר והחלף ל־URL המוחלט שלך -->
+<meta property="og:image" content="https://example.com/og-default.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="מתן איילה בהרצאה 'בין עבר לעתיד'" />
+<meta property="og:url" content="https://example.com/" />
+
+
+<meta name="theme-color" content="#7c3aed" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Heebo לטקסט רץ, Rubik ללוגו/כפתורים/כותרות -->
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300..900&family=Rubik:wght@600;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* ========= Design Tokens ========= */
+:root{
+  /* צבעים מדויקים עם ניגודיות טובה */
+  --primary:#7c3aed;          /* Violet 600 */
+  --primary-700:#6d28d9;
+  --secondary:#06b6d4;        /* Cyan 500 */
+  --accent:#f97316;           /* Orange 500 */
+  --dark:#0f172a;             /* Slate 900 */
+  --light:#f8fafc;            /* Slate 50 */
+  --muted:#64748b;            /* Slate 500 */
+  --surface:#ffffff;
+  --gradient:linear-gradient(135deg,var(--primary) 0%,#4f46e5 40%,var(--secondary) 100%);
+  --glass:rgba(255,255,255,.65);
+  --shadow:0 8px 28px rgba(2,6,23,.10);
+  --shadow-hover:0 14px 40px rgba(2,6,23,.18);
+  --radius:16px;
+  --radius-xl:24px;
+  --transition:all .35s cubic-bezier(.2,.65,.2,1);
+}
+
+/* ========= Base ========= */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Heebo",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  line-height:1.65; color:#1f2937; background:var(--light);
+}
+img{display:block;max-width:100%}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* ========= Header ========= */
+header{
+  position:fixed; inset-inline:0; top:0; z-index:1000;
+  background:rgba(255,255,255,.85); backdrop-filter:saturate(1.2) blur(16px);
+  box-shadow:var(--shadow); transition:var(--transition);
+}
+header.scrolled{box-shadow:var(--shadow-hover)}
+nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{
+  font-family:"Rubik",system-ui; font-weight:900; letter-spacing:.2px;
+  font-size:1.9rem; background:var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  transform:translateZ(0);
+}
+.nav-links{display:flex;gap:1.25rem;list-style:none}
+.nav-links a{
+  position:relative; text-decoration:none; color:var(--dark); font-weight:700; padding:.5rem .75rem; border-radius:10px;
+  transition:var(--transition);
+}
+.nav-links a::after{
+  content:""; position:absolute; inset-inline:12px; bottom:4px; height:2px; border-radius:2px;
+  background:linear-gradient(90deg,transparent, var(--primary), transparent);
+  transform:scaleX(0); transform-origin:center; transition:transform .35s ease;
+}
+.nav-links a:hover{color:var(--primary)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.menu-toggle{display:none}
+
+/* ========= Focus styles ========= */
+:focus-visible{outline:3px solid #a78bfa; outline-offset:2px; border-radius:12px}
+
+/* ========= Mobile Nav ========= */
+.mobile-nav{display:none;position:fixed;inset:0 0 0 auto;width:min(86vw,360px);right:-400px;height:100vh;background:var(--surface);box-shadow:var(--shadow-hover);z-index:1001;transition:var(--transition);display:flex;flex-direction:column}
+.mobile-nav.active{right:0}
+.mobile-nav-header{padding:26px 22px;border-bottom:1px solid #e5e7eb}
+.mobile-nav-title{font-family:"Rubik";font-size:1.5rem;font-weight:900;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.mobile-nav-list{list-style:none;padding:8px 6px}
+.mobile-nav-link{display:block;padding:16px 18px;color:#0b1220;text-decoration:none;font-weight:700;border-radius:12px;transition:var(--transition)}
+.mobile-nav-link:hover,.mobile-nav-link.active{background:rgba(124,58,237,.08);color:var(--primary)}
+.mobile-overlay{position:fixed;inset:0;background:rgba(2,6,23,.45);opacity:0;visibility:hidden;transition:var(--transition);z-index:999}
+.mobile-overlay.active{opacity:1;visibility:visible}
+
+/* ========= Hero ========= */
+.hero{
+  margin-top:68px; min-height:calc(100vh - 68px);
+  display:flex; align-items:center; padding:92px 0; text-align:center; color:#fff;
+  background:var(--gradient); background-size:200% 200%;
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.12);
+  border-bottom-left-radius:var(--radius-xl); border-bottom-right-radius:var(--radius-xl);
+  animation:gradientShift 18s ease infinite;
+}
+.hero-badge{
+  display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px;
+  background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.22);
+  font-weight:800; letter-spacing:.2px; margin-bottom:12px; backdrop-filter:blur(10px);
+}
+.hero h1{font-family:"Rubik"; font-weight:900; line-height:1.08; font-size:clamp(2.4rem,5vw,3.8rem); margin-bottom:8px}
+.hero-subtitle{font-size:clamp(1.25rem,3vw,1.6rem); margin-bottom:22px; color:#a7f3d0; font-weight:800}
+.image-container{
+  width:min(320px,70vw); height:min(320px,70vw); margin:0 auto 22px; border-radius:50%;
+  overflow:hidden; border:4px solid rgba(255,255,255,.26); box-shadow:0 22px 60px rgba(0,0,0,.22);
+  transform:translateZ(0);
+}
+.image-container img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.image-container:hover img{transform:scale(1.06)}
+.hero-description{max-width:820px;margin:0 auto 14px;font-size:1.12rem;line-height:1.8;color:rgba(255,255,255,.96)}
+.hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+
+/* ========= Buttons ========= */
+.btn,.btn-contact{
+  position:relative; display:inline-flex; align-items:center; gap:10px; cursor:pointer; user-select:none;
+  padding:14px 28px; border-radius:999px; font-size:1.05rem; font-weight:900; letter-spacing:.2px; text-decoration:none;
+  transition:transform .28s ease, box-shadow .28s ease, background .28s ease, color .28s ease; overflow:hidden;
+  will-change:transform;
+}
+.btn svg,.btn-contact svg{width:22px;height:22px}
+.btn-whatsapp,.btn-contact-email{background:#fff;color:var(--primary);border:1px solid rgba(124,58,237,.25)}
+.btn-email,.btn-contact-whatsapp{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.85)}
+.btn:hover,.btn-contact:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 14px 36px rgba(2,6,23,.22)}
+/* שיינר עדין */
+.btn::after,.btn-contact::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:translateX(-120%); transition:transform .6s ease; pointer-events:none;
+}
+.btn:hover::after,.btn-contact:hover::after{transform:translateX(120%)}
+
+/* ========= Sections & Cards ========= */
+section{padding:88px 0}
+.about-section,.speaker-section,.gallery-section{background:var(--light)}
+.section-title{
+  font-family:"Rubik"; font-size:clamp(2rem,4vw,2.6rem); text-align:center; margin-bottom:34px; color:var(--dark);
+  position:relative; padding-bottom:14px;
+}
+.section-title::after{
+  content:""; position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  width:90px; height:3px; border-radius:2px; background:var(--gradient);
+}
+.about-content,.speaker-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center}
+.topics-grid,.testimonials,.gallery-grid{display:grid;gap:24px;margin-top:40px}
+.topics-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.testimonials{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.gallery-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.about-text,.topic-card,.testimonial{
+  background:var(--surface); padding:28px; border-radius:var(--radius); box-shadow:var(--shadow);
+  border:1px solid rgba(15,23,42,.06); transition:var(--transition)
+}
+.about-text:hover,.testimonial:hover{transform:translateY(-6px); box-shadow:var(--shadow-hover)}
+.topic-card:hover{transform:translateY(-8px) scale(1.02); box-shadow:var(--shadow-hover)}
+.topic-card{text-align:center}
+p{color:var(--muted); margin-bottom:14px}
+h3{font-family:"Rubik"; color:var(--primary); font-weight:900; font-size:clamp(1.4rem,3vw,1.9rem); margin-bottom:12px}
+h4{font-weight:800; color:var(--dark); margin-bottom:8px}
+strong{color:var(--dark)}
+
+.highlight-box{background:rgba(124,58,237,.06);padding:18px;border-radius:12px;border-inline-start:4px solid var(--primary);margin-top:12px}
+.highlight-box h4{color:var(--primary)}
+
+.topic-icon,.achievement-icon{width:60px;height:60px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}
+.topic-icon svg{width:100%;height:100%;stroke:var(--primary);fill:none;stroke-width:2}
+/* אנימציית אייקון בכרטיסייה */
+.topic-card .topic-icon svg{transition:transform .35s ease}
+.topic-card:hover .topic-icon svg{transform:scale(1.06) rotate(-2deg)}
+.achievement-icon{background:var(--gradient);border-radius:14px;margin:0}
+.achievement-icon svg{width:22px;height:22px;stroke:#fff}
+
+/* ========= Speaker ========= */
+.speaker-image-full{width:100%;max-width:380px;height:480px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-hover);margin-inline:auto}
+.speaker-image-full img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.speaker-image-full:hover img{transform:scale(1.04)}
+.speaker-subtitle{font-size:1.1rem;color:var(--primary);font-weight:800;margin-bottom:14px}
+.achievement-list{list-style:none;margin-top:18px;display:grid;gap:14px}
+.achievement-list li{padding:16px;background:rgba(124,58,237,.06);border-radius:12px;display:flex;align-items:center;gap:14px;transition:transform .35s ease, box-shadow .35s ease}
+.achievement-list li:hover{transform:translateY(-6px) scale(1.01);box-shadow:var(--shadow)}
+
+/* ========= Testimonials ========= */
+.rating{margin-bottom:10px;display:flex;gap:6px}
+.rating svg{width:18px;height:18px;fill:#f59e0b}
+.testimonial-text{font-style:italic}
+.testimonial-author{font-weight:900;color:var(--dark)}
+.testimonial-role{color:var(--muted);font-size:.92rem;margin-top:4px}
+
+/* ========= Gallery ========= */
+.gallery-item{overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:4/3;transition:transform .45s ease, box-shadow .45s ease; transform:translateZ(0)}
+.gallery-item:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-hover)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.gallery-item:hover img{transform:scale(1.06)}
+
+/* ========= Contact ========= */
+.contact-section{background:var(--gradient);text-align:center;color:#fff;border-top-left-radius:var(--radius-xl);border-top-right-radius:var(--radius-xl)}
+.contact-subtitle{font-size:1.15rem;margin:0 auto 26px;color:rgba(255,255,255,.95);line-height:1.9;max-width:820px}
+.contact-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+
+/* ========= Footer ========= */
+footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
+.social-links{margin-top:18px;display:flex;gap:16px;justify-content:center}
+.social-links a{color:#fff;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,255,255,.1);transition:var(--transition)}
+.social-links a:hover{background:rgba(255,255,255,.2);transform:translateY(-3px)}
+.social-links svg{width:20px;height:20px;fill:currentColor}
+
+/* ========= Back to Top ========= */
+.back-to-top{
+  position:fixed;bottom:26px;left:26px;width:52px;height:52px;border:none;border-radius:50%;
+  background:var(--gradient);color:#fff;font-size:1.3rem;cursor:pointer;z-index:1001;
+  opacity:0;visibility:hidden;transform:translateY(100px);transition:var(--transition)
+}
+.back-to-top.visible{opacity:1;visibility:visible;transform:translateY(0)}
+
+/* ========= Reveal on Scroll ========= */
+.reveal{opacity:0; transform:translateY(24px)}
+.reveal.in-view{opacity:1; transform:none; transition:transform .7s cubic-bezier(.2,.65,.2,1), opacity .7s}
+
+/* ========= Motion & Media ========= */
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero{background-position:50% 50%}
+}
+@media (max-width:1024px){
+  .menu-toggle{display:inline-flex;align-items:center;justify-content:center;background:var(--gradient);border:none;color:#fff;padding:12px;border-radius:12px;box-shadow:var(--shadow);font-size:1.25rem}
+  .nav-links{display:none}
+  .mobile-nav{display:flex}
+  .hero{padding:64px 0;min-height:auto}
+  .image-container{width:220px;height:220px;margin-bottom:16px}
+  .contact-buttons{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav aria-label="ראשי">
+      <div class="logo">מתן איילה</div>
+      <ul class="nav-links" role="menubar">
+        <li role="none"><a role="menuitem" href="#home" class="active">בית</a></li>
+        <li role="none"><a role="menuitem" href="#about">אודות</a></li>
+        <li role="none"><a role="menuitem" href="#topics">נושאים</a></li>
+        <li role="none"><a role="menuitem" href="#speaker">המרצה</a></li>
+        <li role="none"><a role="menuitem" href="#gallery">גלריה</a></li>
+        <li role="none"><a role="menuitem" href="#testimonials">המלצות</a></li>
+        <li role="none"><a role="menuitem" href="#contact">צור קשר</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-controls="mobileNav" aria-expanded="false" aria-label="פתח תפריט">☰</button>
+    </nav>
+  </div>
+</header>
+
+<!-- Mobile -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="תפריט נייד">
+  <div class="mobile-nav-header">
+    <h3 class="mobile-nav-title">מתן איילה</h3>
+  </div>
+  <ul class="mobile-nav-list">
+    <li><a href="#home" class="mobile-nav-link active">בית</a></li>
+    <li><a href="#about" class="mobile-nav-link">אודות</a></li>
+    <li><a href="#topics" class="mobile-nav-link">נושאים</a></li>
+    <li><a href="#speaker" class="mobile-nav-link">המרצה</a></li>
+    <li><a href="#gallery" class="mobile-nav-link">גלריה</a></li>
+    <li><a href="#testimonials" class="mobile-nav-link">המלצות</a></li>
+    <li><a href="#contact" class="mobile-nav-link">צור קשר</a></li>
+  </ul>
+</div>
+<div class="mobile-overlay" id="mobileOverlay" hidden></div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content reveal in-view">
+      <div class="hero-badge"><span>הרצאה מעוררת השראה</span></div>
+      <h1>בין עבר לעתיד</h1>
+      <p class="hero-subtitle">סיפור על זהות וצמיחה</p>
+      <div class="image-container">
+        <img src="matan.jpg" alt="מתן איילה" width="640" height="640" decoding="async" fetchpriority="high">
+      </div>
+      <p class="hero-description">
+        סיפורו הייחודי והמרתק של הצעיר מתן איילה, שחוזר במסע אל תחנות משמעותיות בחייו. ילד בן 10 שעלה לבדו לארץ חדשה, מבלי לדעת מילה בעברית, והשאיר מאחור את אימו ואחותו.
+      </p>
+      <p class="hero-description">
+        סיפור שמחבר בין אהבה, כאב וטרגדיה – אב שלא זכה להכיר, יחסים מורכבים עם אימו הביולוגית שמסרה אותו לאימוץ בגיל שנה, ועיצוב זהותו החדשה כנער במשפחה המאמצת.
+      </p>
+      <div class="hero-buttons">
+        <!-- כפתור וואטסאפ: שיתוף קישור + טקסט. התמונה תיקבע אוטומטית לפי OG של העמוד -->
+        <a href="https://wa.me/972549996459" class="btn btn-whatsapp" aria-label="צ'אט וואטסאפ">
+          <!-- וואטסאפ -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448ל-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634ל-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51ל-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          דברו איתי בוואטסאפ
+        </a>
+        <a href="mailto:matanayela6@gmail.com" class="btn btn-email" aria-label="שלחו מייל">✉️ שלחו מייל</a>
+        <!-- שיתוף כללי (אם הדפדפן תומך navigator.share) -->
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about-section" id="about">
+  <div class="container">
+    <h2 class="section-title reveal">אודות ההרצאה</h2>
+    <div class="about-content">
+      <div class="about-text reveal">
+        <h3>מסע מרתק אל הלב האנושי</h3>
+        <p>ההרצאה של מתן איילה היא חוויה מעוררת השראה שלוקחת את הקהל למסע אישי ומרגש. דרך סיפורו האישי, מתן מזמין אותנו להתבונן על משמעות הזהות, כוחה של הבחירה, והיכולת לצמוח מתוך אתגרים.</p>
+        <div class="highlight-box">
+          <h4>מה תקבלו בהרצאה?</h4>
+          <p>השראה להתמודדות עם אתגרים | כלים לחיזוק החוסן הנפשי | פרספקטיבה חדשה על זהות וצמיחה | סיפור אנושי מרגש ומחבר</p>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <h3>למי מתאימה ההרצאה?</h3>
+        <p><strong>לארגונים וחברות:</strong> צוותים המעוניינים בהשראה, חיזוק הלכידות ופיתוח חוסן ארגוני.</p>
+        <p><strong>למוסדות חינוך:</strong> תיכונים, מכללות ואוניברסיטאות המעוניינים להעניק לסטודנטים פרספקטיבה מעצימה.</p>
+        <p><strong>לקהילות וארגונים חברתיים:</strong> קבוצות המעוניינות בסיפורי השראה על התמודדות וצמיחה.</p>
+        <div class="highlight-box">
+          <h4>פורמט גמיש</h4>
+          <p>הרצאה פרונטלית | וובינר אונליין | סדנה אינטראקטיבית | התאמה לצרכי הארגון</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Topics -->
+<section class="topics-section" id="topics">
+  <div class="container">
+    <h2 class="section-title reveal">נושאי ההרצאה</h2>
+    <div class="topics-grid">
+      <!-- כרטיסים (ה־SVG כמו בקוד שלך) -->
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 23c6.071 0 11-4.929 11-11S18.071 1 12 1 1 5.929 1 12s4.929 11 11 11z"/><path d="M12 6v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h4>זהות וצמיחה</h4>
+        <p>איך מגדירים את עצמנו מחדש כשהעבר מורכב? מסע אל גילוי הזהות האמיתית</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h4>כוח ההתמודדות</h4>
+        <p>הפיכת אתגרים למנועי צמיחה – סיפור אישי על התמודדות עם קשיים</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8c-4 0-7 2-7 4v8h14v-8c0-2-3-4-7-4z"/></svg>
+        </div>
+        <h4>קשרים משפחתיים</h4>
+        <p>מורכבות היחסים המשפחתיים וההשפעה שלהם על עיצוב האישיות</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h4>תרבות ושייכות</h4>
+        <p>החיבור בין תרבויות שונות והמסע למציאת מקום בעולם</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/></svg>
+        </div>
+        <h4>בחירה ומשמעות</h4>
+        <p>כוחה של הבחירה בעיצוב החיים – איך להפוך את הגורל לייעוד</p>
+      </div>
+      <div class="topic-card reveal">
+        <div class="topic-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h4>אהבה וסליחה</h4>
+        <p>המסע לסליחה עצמית וסליחה לאחרים כמפתח לחיים מלאים</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Speaker -->
+<section class="speaker-section" id="speaker">
+  <div class="container">
+    <h2 class="section-title reveal">על המרצה</h2>
+    <div class="speaker-content">
+      <div class="speaker-image-full reveal">
+        <img src="matan2.JPG" alt="מתן איילה נואם" width="640" height="800" loading="lazy" decoding="async">
+      </div>
+      <div class="reveal">
+        <h3>מתן איילה</h3>
+        <p class="speaker-subtitle">מרצה מעורר השראה | סיפור חיים מרתק</p>
+        <p><strong>מסע מרתק:</strong> נולד באתיופיה ועלה לארץ בגיל 10 לבדו, ללא הוריו וללא ידיעת השפה העברית.</p>
+        <p><strong>סיפור השראה:</strong> מהפרידה מאמו הביולוגית שמסרה אותו לאימוץ, דרך החיים במשפחה המאמצת, ועד לבניית זהותו העצמאית כבוגר.</p>
+        <p><strong>כיום:</strong> מרצה מבוקש המשתף את סיפורו במסגרות שונות – ארגונים, מוסדות חינוך וקהילות.</p>
+        <ul class="achievement-list">
+          <li class="reveal">
+            <div class="achievement-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div><strong>מרצה מנוסה</strong><br><span>מאות הרצאות ברחבי הארץ</span></div>
+          </li>
+          <li class="reveal">
+            <div class="achievement-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+            </div>
+            <div><strong>קהלים מגוונים</strong><br><span>חיבור עם אלפי משתתפים</span></div>
+          </li>
+          <li class="reveal">
+            <div class="achievement-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            </div>
+            <div><strong>ניסיון רב</strong><br><span>ארגונים, בתי ספר וקהילות</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <h2 class="section-title reveal">מה אומרים על ההרצאה</h2>
+    <div class="testimonials">
+      <div class="testimonial reveal">
+        <div class="rating">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"מתן הצליח לרתק את כל העובדים שלנו. הסיפור האישי שלו נתן לכולנו פרספקטיבה חדשה על התמודדות עם אתגרים."</p>
+        <div class="testimonial-author">רונית כהן</div>
+        <div class="testimonial-role">מנהלת משאבי אנוש, חברת הייטק</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="rating">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"התלמידים שלנו יצאו מההרצאה עם מוטיבציה חדשה. הסיפור של מתן על התמודדות וצמיחה נגע בכולם."</p>
+        <div class="testimonial-author">ד"ר מיכל לוי</div>
+        <div class="testimonial-role">מנהלת תיכון</div>
+      </div>
+      <div class="testimonial reveal">
+        <div class="rating">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testimonial-text">"הרצאה מרגשת ומעצימה. מתן מצליח לקחת את הקהל למסע אישי ולהעביר מסרים חשובים."</p>
+        <div class="testimonial-author">אבי שפירא</div>
+        <div class="testimonial-role">מנכ"ל ארגון חברתי</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <h2 class="section-title reveal">רגעים מהרצאות קודמות</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img src="lecture1.JPG" alt="הרצאה בכנס" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="gallery-item reveal"><img src="lecture2.JPG" alt="קהל מאזינים" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="gallery-item reveal"><img src="lecture3.JPG" alt="הרצאה בארגון" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=1200&h=900&fit=crop&auto=format" alt="צילום אווירה של קהל" width="1200" height="900" loading="lazy" decoding="async"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1503428593586-e225b39bddfe?w=1200&h=900&fit=crop&auto=format" alt="בימת הרצאה" width="1200" height="900" loading="lazy" decoding="async"></div>
+      <div class="gallery-item reveal"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=900&fit=crop&auto=format" alt="מחיאות כפיים" width="1200" height="900" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="section-title reveal" style="color:#fff">בואו נדבר על ההרצאה הבאה שלכם</h2>
+    <p class="contact-subtitle">מעוניינים להזמין את מתן איילה להרצאה בארגון שלכם?<br>צרו קשר ונשמח לתאם הרצאה שתתאים בדיוק לצרכים שלכם</p>
+    <div class="contact-buttons">
+      <a href="https://wa.me/972549996459?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%91%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%A0%D7%95" class="btn-contact btn-contact-whatsapp" aria-label="שלחו הודעת וואטסאפ" rel="noopener" target="_blank">
+        שלחו הודעת וואטסאפ
+      </a>
+      <a href="mailto:matanayela6@gmail.com?subject=בקשה להרצאה" class="btn-contact btn-contact-email" aria-label="שלחו מייל">שלחו מייל</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 מתן איילה – כל הזכויות שמורות</p>
+    <div class="social-links" aria-label="רשתות חברתיות">
+      <a href="https://www.facebook.com/ayela2" title="Facebook" aria-label="Facebook" rel="noopener" target="_blank">
+        <!-- תיקון ה־SVG הפגום -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.405.595 24 1.326 24h11.495v-9.294H9.691V11.01h3.13V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.765v2.314h3.592l-.468 3.696h-3.124V24h6.127C23.405 24 24 23.405 24 22.674V1.326C24 .595 23.405 0 22.675 0z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/matan_ayela" title="Instagram" aria-label="Instagram" rel="noopener" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@matanayela" title="TikTok" aria-label="TikTok" rel="noopener" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="גלול לראש העמוד">↑</button>
+
+<script>
+/* עזרי DOM */
+const d=document,$=s=>d.querySelector(s),$$=s=>d.querySelectorAll(s);
+
+/* מובייל נב */
+const menuBtn=$("#menuToggle"), mobileNav=$("#mobileNav"), overlay=$("#mobileOverlay");
+function toggleNav(state){
+  const open = state ?? !mobileNav.classList.contains("active");
+  mobileNav.classList.toggle("active", open);
+  overlay.classList.toggle("active", open);
+  menuBtn.setAttribute("aria-expanded", String(open));
+  overlay.hidden = !open;
+  if(open){ mobileNav.querySelector("a")?.focus(); } else { menuBtn.focus(); }
+}
+menuBtn.addEventListener("click",()=>toggleNav());
+overlay.addEventListener("click",()=>toggleNav(false));
+d.addEventListener("keydown",(e)=>{ if(e.key==="Escape") toggleNav(false); });
+
+/* Smooth Scroll + active link */
+$$('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id = a.getAttribute('href');
+    const target = $(id);
+    if(!target) return;
+    e.preventDefault();
+    const y = target.getBoundingClientRect().top + window.scrollY - 82;
+    window.scrollTo({top:y,behavior:'smooth'});
+    if(a.classList.contains('mobile-nav-link')) toggleNav(false);
+  });
+});
+const header=$('header'), backToTop=$("#backToTop");
+window.addEventListener('scroll',()=>{
+  const scrolled = window.scrollY>100;
+  header.classList.toggle('scrolled',scrolled);
+  backToTop.classList.toggle('visible',scrolled);
+  // עדכון קישור פעיל
+  let current='';
+  $$('section[id]').forEach(s=>{ if(window.scrollY >= (s.offsetTop-120)) current=s.id; });
+  $$('.nav-links a, .mobile-nav-link').forEach(l=>{ l.classList.toggle('active', l.getAttribute('href')===`#${current}`); });
+});
+backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
+
+/* Reveal on scroll (מכבד reduced-motion) */
+const targets=$$('.reveal');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target);} });
+  },{rootMargin:'-12% 0px -12% 0px',threshold:.06});
+  targets.forEach(el=>io.observe(el));
+}else{
+  targets.forEach(el=>el.classList.add('in-view'));
+}
+
+
+
+/* ===== הערה לפוליו דפים =====
+   אם יהיו דפים מרובים (HTML נפרדים), שים תגיות OG/Twitter ייעודיות בכל קובץ.
+   סקרייפרים של WhatsApp/Facebook/Twitter לא מריצים JS, לכן תגיות דינמיות בצד לקוח לא ישפיעו על התצוגה המקדימה.
+   ב־SPA/Next.js – יש להשתמש ב־SSR/SSG כדי להוציא תגיות מטא פר־עמוד בזמן בנייה/שרת. */
+</script>
+</body>
+</html>
