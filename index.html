@@ -1,5 +1,7 @@
 
 
+
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -253,6 +255,183 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
   .image-container{width:220px;height:220px;margin-bottom:16px}
   .contact-buttons{flex-direction:column;align-items:center}
 }
+
+/* === Disable text selection site-wide (per user request) === */
+html, body, *, *::before, *::after{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input, textarea{
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* === HERO subtle ambient overlay (aurora-style) === */
+.hero{ position:relative; overflow:hidden; }
+.hero > *{ position:relative; z-index:1; }
+
+.hero-ambient{
+  position:absolute;
+  inset:-10% -10%;
+  pointer-events:none;
+  z-index:0;
+  opacity:.12;
+  filter: blur(40px);
+}
+
+/* Color tokens (fallbacks use your primary/secondary/tertiary if defined) */
+:root{
+  --hero-o1: var(--primary, hsl(252 85% 62% / .9));
+  --hero-o2: var(--secondary, hsl(158 65% 52% / .9));
+  --hero-o3: var(--tertiary, hsl(42 95% 55% / .9));
+}
+
+/* Default variant: "aurora" — slow, organic gradient drift */
+.hero-ambient.is-aurora{
+  background:
+    radial-gradient(35% 40% at 15% 20%, var(--hero-o1) 0%, transparent 60%),
+    radial-gradient(45% 35% at 85% 30%, var(--hero-o2) 0%, transparent 60%),
+    radial-gradient(30% 45% at 50% 90%, var(--hero-o3) 0%, transparent 65%);
+  mix-blend-mode: soft-light;
+  animation: auroraShift 36s ease-in-out infinite alternate;
+}
+@keyframes auroraShift{
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  50%  { transform: translate3d(-2%, -3%, 0) scale(1.05); }
+  100% { transform: translate3d(2%, 3%, 0) scale(1); }
+}
+
+/* Optional variant: "weave" — hint of woven texture (symbolic ל'מסע/זהות') */
+.hero-ambient.is-weave{
+  opacity:.06;
+  background:
+    repeating-linear-gradient(60deg, rgba(0,0,0,.6) 0 2px, transparent 2px 9px),
+    repeating-linear-gradient(-60deg, rgba(0,0,0,.6) 0 2px, transparent 2px 9px);
+  mix-blend-mode: overlay;
+  animation: weaveDrift 28s linear infinite;
+}
+@keyframes weaveDrift{
+  from { background-position: 0 0, 0 0; }
+  to   { background-position: 240px 0, 0 240px; }
+}
+
+/* Optional variant: "constellation" — faint dotted map (מסע/נקודות דרך) */
+.hero-ambient.is-constellation{
+  opacity:.08;
+  background:
+    radial-gradient(circle at 10% 20%, currentColor 2px, transparent 3px),
+    radial-gradient(circle at 50% 60%, currentColor 1.5px, transparent 3px),
+    radial-gradient(circle at 80% 30%, currentColor 1.8px, transparent 3px);
+  background-size: 120px 120px, 160px 160px, 200px 200px;
+  mix-blend-mode: soft-light;
+  animation: starsFloat 60s linear infinite;
+}
+@keyframes starsFloat{
+  to { background-position: 0 -240px, -160px -320px, 200px -400px; }
+}
+
+/* === HERO starfield overlay (subtle, space-like) === */
+.hero-ambient.is-stars{
+  position:absolute;
+  inset:-10% -10%;
+  pointer-events:none;
+  z-index:0;
+  color: hsla(0,0%,100%,.95);
+  opacity:.14;
+  mix-blend-mode: soft-light;
+  filter: blur(0.5px);
+  animation: starsMove1 120s linear infinite, starsTwinkle 7s ease-in-out infinite alternate;
+  background:
+    /* Layer A (base) */
+    radial-gradient(1px 1px at 7% 12%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 18% 65%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 33% 22%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 45% 78%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 58% 15%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 66% 60%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 72% 35%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 83% 70%, currentColor 99%, transparent 100%),
+    radial-gradient(1px 1px at 90% 18%, currentColor 99%, transparent 100%);
+}
+.hero-ambient.is-stars::before,
+.hero-ambient.is-stars::after{
+  content:"";
+  position:absolute;
+  inset:-10% -10%;
+  pointer-events:none;
+}
+/* Layer B (parallax, larger sparse stars) */
+.hero-ambient.is-stars::before{
+  opacity:.12;
+  filter: blur(0.4px);
+  animation: starsMove2 180s linear infinite, starsTwinkle 9s ease-in-out infinite alternate;
+  background:
+    radial-gradient(1.5px 1.5px at 12% 40%, currentColor 99%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 28% 12%, currentColor 99%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 52% 55%, currentColor 99%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 70% 22%, currentColor 99%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 86% 66%, currentColor 99%, transparent 100%);
+}
+/* Layer C (near field, smaller/faster) */
+.hero-ambient.is-stars::after{
+  opacity:.10;
+  filter: blur(0.2px);
+  animation: starsMove3 90s linear infinite, starsTwinkle 6s ease-in-out infinite alternate;
+  background:
+    radial-gradient(.8px .8px at 6% 78%, currentColor 99%, transparent 100%),
+    radial-gradient(.8px .8px at 24% 30%, currentColor 99%, transparent 100%),
+    radial-gradient(.8px .8px at 41% 88%, currentColor 99%, transparent 100%),
+    radial-gradient(.8px .8px at 63% 72%, currentColor 99%, transparent 100%),
+    radial-gradient(.8px .8px at 77% 48%, currentColor 99%, transparent 100%),
+    radial-gradient(.8px .8px at 92% 82%, currentColor 99%, transparent 100%);
+}
+
+@keyframes starsMove1{
+  from{ transform: translate3d(0,0,0); }
+  to  { transform: translate3d(-3%, -6%, 0); }
+}
+@keyframes starsMove2{
+  from{ transform: translate3d(0,0,0); }
+  to  { transform: translate3d(-1.5%, -3%, 0); }
+}
+@keyframes starsMove3{
+  from{ transform: translate3d(0,0,0); }
+  to  { transform: translate3d(-5%, -10%, 0); }
+}
+@keyframes starsTwinkle{
+  0%  { opacity: .10; }
+  50% { opacity: .18; }
+  100%{ opacity: .10; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .hero-ambient.is-stars,
+  .hero-ambient.is-stars::before,
+  .hero-ambient.is-stars::after{
+    animation: none !important;
+  }
+}
+
+/* === Profile image: very gentle zoom in/out loop (replaces previous) === */
+#speaker img[alt="מתן איילה"]{
+  transform: none;
+  will-change: transform;
+  animation: profileZoom 12s ease-in-out infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes profileZoom{
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce){
+  #speaker img[alt="מתן איילה"]{ animation: none !important; }
+}
 </style>
 
 <style>
@@ -291,6 +470,25 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
   .logo{ transition: none !important; }
   .menu-toggle:hover,
   .logo:hover{ transform: none !important; filter: none !important; text-shadow: none !important; }
+}
+
+/* === Logo hover overrides: no zoom, subtle gradient shift === */
+.logo{
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position .35s ease, filter .3s ease;
+}
+.logo:hover{
+  transform: none !important;
+  text-shadow: none !important;
+  filter: brightness(1.05);
+  background-position: 100% 50%;
+}
+
+/* === Button SVG tweaks === */
+.btn svg, .btn-contact svg{
+  display: block;
+  flex-shrink: 0;
 }
 </style>
 
@@ -340,6 +538,9 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
 <main id="main">
   <!-- Hero -->
   <section class="hero" id="home">
+  <!-- Ambient overlay (switch variant by class: is-aurora | is-weave | is-constellation) -->
+  <div class="hero-ambient is-stars" aria-hidden="true"></div>
+
     <div class="container">
       <div class="hero-content reveal in-view">
         <div class="hero-badge"><span>הרצאה מעוררת השראה</span></div>
@@ -357,10 +558,10 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
         <div class="hero-buttons">
           <!-- כפתור וואטסאפ: SVG תקין ונגיש -->
           <a href="https://wa.me/972549996459" class="btn btn-whatsapp" aria-label="צ'אט וואטסאפ">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 003.48 8.52L0 24l3.66-3.42A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-2.99.78.8-2.91-.23-.38A9.98 9.98 0 1122 12 9.99 9.99 0 0112 22zm5.44-7.58c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.25-.65.1a8.2 8.2 0 01-2.43-1.5 9 9 0 01-1.62-2.02c-.17-.3 0-.46.13-.62.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.82.38s-1.08 1.06-1.08 2.58 1.11 2.98 1.27 3.18c.15.2 2.19 3.34 5.3 4.56.74.32 1.32.5 1.77.64.75.24 1.43.21 1.97.13.6-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.21-.57-.36z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" shape-rendering="geometricPrecision"><path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 003.48 8.52L0 24l3.66-3.42A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-2.99.78.8-2.91-.23-.38A9.98 9.98 0 1122 12 9.99 9.99 0 0112 22zm5.44-7.58c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.25-.65.1a8.2 8.2 0 01-2.43-1.5 9 9 0 01-1.62-2.02c-.17-.3 0-.46.13-.62.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.82.38s-1.08 1.06-1.08 2.58 1.11 2.98 1.27 3.18c.15.2 2.19 3.34 5.3 4.56.74.32 1.32.5 1.77.64.75.24 1.43.21 1.97.13.6-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.21-.57-.36z"/></svg>
             דברו איתי בוואטסאפ
           </a>
-          <a href="mailto:matanayela6@gmail.com" class="btn btn-email" aria-label="שלחו מייל">✉️ שלחו מייל</a>
+          <a href="mailto:matanayela6@gmail.com" class="btn btn-email" aria-label="שלחו מייל"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" role="img"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><path d="M2 7l10 7 10-7"></path></svg> שלחו מייל</a>
         </div>
       </div>
     </div>
@@ -541,10 +742,9 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
       <h2 class="section-title reveal">בואו נדבר על ההרצאה הבאה שלכם</h2>
       <p class="contact-subtitle">מעוניינים להזמין את מתן איילה להרצאה בארגון שלכם?<br>צרו קשר ונשמח לתאם הרצאה שתתאים בדיוק לצרכים שלכם</p>
       <div class="contact-buttons">
-        <a href="https://wa.me/972549996459?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%91%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%A0%D7%95" class="btn-contact btn-contact-whatsapp" aria-label="שלחו הודעת וואטסאפ" rel="noopener" target="_blank">
-          שלחו הודעת וואטסאפ
+        <a href="https://wa.me/972549996459?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%91%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%A0%D7%95" class="btn-contact btn-contact-whatsapp" aria-label="שלחו הודעת וואטסאפ" rel="noopener" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" shape-rendering="geometricPrecision"><path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 003.48 8.52L0 24l3.66-3.42A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-2.99.78.8-2.91-.23-.38A9.98 9.98 0 1122 12 9.99 9.99 0 0112 22zm5.44-7.58c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.25-.65.1a8.2 8.2 0 01-2.43-1.5 9 9 0 01-1.62-2.02c-.17-.3 0-.46.13-.62.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.82.38s-1.08 1.06-1.08 2.58 1.11 2.98 1.27 3.18c.15.2 2.19 3.34 5.3 4.56.74.32 1.32.5 1.77.64.75.24 1.43.21 1.97.13.6-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.21-.57-.36z"/></svg> שלחו הודעת וואטסאפ
         </a>
-        <a href="mailto:matanayela6@gmail.com?subject=בקשה להרצאה" class="btn-contact btn-contact-email" aria-label="שלחו מייל">שלחו מייל</a>
+        <a href="mailto:matanayela6@gmail.com?subject=בקשה להרצאה" class="btn-contact btn-contact-email" aria-label="שלחו מייל"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" role="img"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><path d="M2 7l10 7 10-7"></path></svg> שלחו מייל</a>
       </div>
     </div>
   </section>
@@ -558,7 +758,7 @@ footer{background:var(--dark);color:#fff;text-align:center;padding:36px 0}
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.405.595 24 1.326 24H12.82v-9.294H9.691V11.01h3.129V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.765v2.314h3.592l-.468 3.696h-3.124V24h6.127C23.405 24 24 23.405 24 22.674V1.326C24 .595 23.405 0 22.675 0z"/></svg>
       </a>
       <a href="https://www.instagram.com/matan_ayela" title="Instagram" aria-label="Instagram" rel="noopener" target="_blank">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"></circle></svg>
       </a>
       <a href="https://www.tiktok.com/@matanayela" title="TikTok" aria-label="TikTok" rel="noopener" target="_blank">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
@@ -690,6 +890,30 @@ window.__runNavTests__ = async function(){
 };
 
 /* הערות: לא בוצעו שינויי תוכן או הוספת Twitter Cards/JSON-LD בהתאם לבקשה. */
+
+/* === Click logo to scroll to top quickly === */
+const logoEl = $('.logo');
+if (logoEl){
+  logoEl.setAttribute('role','link');
+  logoEl.setAttribute('tabindex','0');
+  const scrollToTopFast = () => {
+    const start = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const duration = 250;
+    const startTime = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      window.scrollTo(0, Math.round(start * (1 - ease)));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  logoEl.addEventListener('click', scrollToTopFast);
+  logoEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToTopFast(); }
+  });
+}
+
 </script>
 </body>
 </html>
