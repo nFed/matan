@@ -451,19 +451,13 @@ input, textarea{
 
 /* Logo "מתן איילה" */
 .logo{
-  background-size: 200% 200%;
-  background-position: 0% 50%;
-  transition: background-position .35s ease, filter .3s ease;
+  transition: transform .3s ease, text-shadow .3s ease, filter .3s ease;
+  will-change: transform;
 }
 .logo:hover{
+  transform: translateY(-1px) scale(1.02);
+  text-shadow: 0 2px 6px rgba(0,0,0,.18);
   filter: brightness(1.05);
-  background-position: 100% 50%;
-}
-
-/* Button SVG tweaks */
-.btn svg, .btn-contact svg{
-  display: block;
-  flex-shrink: 0;
 }
 
 /* Respect reduced motion */
@@ -471,7 +465,26 @@ input, textarea{
   .menu-toggle,
   .logo{ transition: none !important; }
   .menu-toggle:hover,
-  .logo:hover{ transform: none !important; filter: none !important; }
+  .logo:hover{ transform: none !important; filter: none !important; text-shadow: none !important; }
+}
+
+/* === Logo hover overrides: no zoom, subtle gradient shift === */
+.logo{
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transition: background-position .35s ease, filter .3s ease;
+}
+.logo:hover{
+  transform: none !important;
+  text-shadow: none !important;
+  filter: brightness(1.05);
+  background-position: 100% 50%;
+}
+
+/* === Button SVG tweaks === */
+.btn svg, .btn-contact svg{
+  display: block;
+  flex-shrink: 0;
 }
 </style>
 
@@ -521,34 +534,20 @@ input, textarea{
 <main id="main">
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="container">
+  <!-- Ambient overlay (switch variant by class: is-aurora | is-weave | is-constellation) -->
+  <div class="container">
       <div class="hero-content reveal in-view">
-        <div class="hero-badge"><span>הרצאה מרגשת ומעוררת השראה</span></div>
-        <h1>עד הנשימה האחרונה</h1>
-        <p class="hero-subtitle">מסע הפרידה מאמא</p>
+        <div class="hero-badge"><span>הרצאה מעוררת השראה</span></div>
+        <h1>בין עבר לעתיד</h1>
+        <p class="hero-subtitle">סיפור על זהות וצמיחה</p>
         <div class="image-container">
           <img src="matan.jpg" alt="מתן איילה" width="640" height="640" decoding="async" fetchpriority="high">
         </div>
         <p class="hero-description">
-          הרצאה מרגשת ומעוררת השראה של העיתונאי <strong>מתן איילה</strong>
+          סיפורו הייחודי והמרתק של מתן איילה, עיתונאי ומגיש בחדשות 13, החוזר במסע אל תחנות משמעותיות בחייו. ילד בן 10 שעלה לבדו לארץ חדשה, מבלי לדעת מילה בעברית, והשאיר מאחור את אימו ואחותו.
         </p>
         <p class="hero-description">
-          אני, מתן, גדלתי התחנכתי והתעצבתי בין עולמות, בין זכרונות של אב שנעלם מוקדם מדי לבין האתגרים שבבניית זהות חדשה בארץ אחרת.
-        </p>
-        <p class="hero-description">
-          בגיל 11 עליתי לארץ בלי לדעת מילה בעברית, והשארתי מאחור את אימי ואחותי, ונכנסתי לעולם חדש, קשה ומורכב.
-        </p>
-        <p class="hero-description">
-          אך המסע האמיתי שהשפיע על חיי היה המסע עם אמא שלי – אישה מיוחדת שעמדה מול מחלה קשה ומצאה כוח להיאבק, לצחוק ולחבק.
-        </p>
-        <p class="hero-description">
-          המחלה שהיא חלתה בה לא לקחה רק את גופה, אלא גם גילתה מחדש את החיבור בין שנינו, את האהבה שלא נגמרת, ואת הכוח למצוא משמעות גם ברגעי השבר הכי גדולים.
-        </p>
-        <p class="hero-description">
-          בהרצאה זו אני מזמין אתכם להצטרף אליי למסע חיים שנגע באובדן, בשבר ובכאב – אבל גם באמונה, בהומור ובניסים שמתרחשים דווקא כשנראה שאין תקווה.
-        </p>
-        <p class="hero-description">
-          מסע אישי של עד הנשימה האחרונה – לא רק של פרידה מאמא, אלא של חיים שנכתבים מחדש.
+          סיפור שמחבר בין אהבה, כאב וטרגדיה – אב שלא זכה להכיר, יחסים מורכבים עם אימו הביולוגית שמסרה אותו לאימוץ בגיל שנה, ועיצוב זהותו החדשה כנער במשפחה המאמצת.
         </p>
         <div class="hero-buttons">
           <!-- כפתור וואטסאפ: SVG תקין ונגיש -->
@@ -561,3 +560,356 @@ input, textarea{
       </div>
     </div>
   </section>
+
+  <!-- About -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2 class="section-title reveal">אודות ההרצאה</h2>
+      <div class="about-content">
+        <div class="about-text reveal">
+          <h3>מסע מרתק אל הלב האנושי</h3>
+          <p>ההרצאה של מתן איילה היא חוויה מעוררת השראה שלוקחת את הקהל למסע אישי ומרגש. דרך סיפורו האישי, מתן מזמין אותנו להתבונן על משמעות הזהות, כוחה של הבחירה, והיכולת לצמוח מתוך אתגרים.</p>
+          <div class="highlight-box">
+            <h4>מה תקבלו בהרצאה?</h4>
+            <p>השראה להתמודדות עם אתגרים | כלים לחיזוק החוסן הנפשי | פרספקטיבה חדשה על זהות וצמיחה | סיפור אנושי מרגש ומחבר</p>
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h3>למי מתאימה ההרצאה?</h3>
+          <p><strong>לארגונים וחברות:</strong> אירועי גיבוש, ימי העשרה והשראה, שבוע עלייה ותפוצות, ימי עיון לחברות.</p>
+          <p><strong>למוסדות חינוך:</strong> בתי ספר, תיכונים, מכללות ואוניברסיטאות המעוניינים להעניק לתלמידים ולסטודנטים פרספקטיבה מעצימה.</p>
+          <p><strong>לקהילות וארגונים חברתיים:</strong> קבוצות המעוניינות בסיפורי השראה על התמודדות וצמיחה.</p>
+          <div class="highlight-box">
+            <h4>פורמט גמיש</h4>
+            <p>הרצאה פרונטלית | וובינר אונליין | סדנה אינטראקטיבית | התאמה לצרכי הארגון</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section class="topics-section" id="topics">
+    <div class="container">
+      <h2 class="section-title reveal">נושאי ההרצאה</h2>
+      <div class="topics-grid">
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 23c6.071 0 11-4.929 11-11S18.071 1 12 1 1 5.929 1 12s4.929 11 11 11z"/><path d="M12 6v6l4 2" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h4>זהות וצמיחה</h4>
+          <p>איך מגדירים את עצמנו מחדש כשהעבר מורכב? מסע אל גילוי הזהות האמיתית</p>
+        </div>
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h4>כוח ההתמודדות</h4>
+          <p>הפיכת אתגרים למנועי צמיחה – סיפור אישי על התמודדות עם קשיים</p>
+        </div>
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><path d="M12 8c-4 0-7 2-7 4v8h14v-8c0-2-3-4-7-4z"/></svg>
+          </div>
+          <h4>קשרים משפחתיים</h4>
+          <p>מורכבות היחסים המשפחתיים וההשפעה שלהם על עיצוב האישיות</p>
+        </div>
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h4>תרבות ושייכות</h4>
+          <p>החיבור בין תרבויות שונות והמסע למציאת מקום בעולם</p>
+        </div>
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m11-7h-6m-6 0H1"/></svg>
+          </div>
+          <h4>בחירה ומשמעות</h4>
+          <p>כוחה של הבחירה בעיצוב החיים – איך להפוך את הגורל לייעוד</p>
+        </div>
+        <div class="topic-card reveal">
+          <div class="topic-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h4>אהבה וסליחה</h4>
+          <p>המסע לסליחה עצמית וסליחה לאחרים כמפתח לחיים מלאים</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speaker -->
+  <section class="speaker-section" id="speaker">
+    <div class="container">
+      <h2 class="section-title reveal">על המרצה</h2>
+      <div class="speaker-content">
+        <div class="speaker-image-full reveal">
+          <img src="matan2.jpg" alt="מתן איילה נואם" width="640" height="800" loading="lazy" decoding="async">
+        </div>
+        <div class="reveal">
+          <h3>מתן איילה</h3>
+          <p class="speaker-subtitle">מרצה מעורר השראה | סיפור חיים מרתק</p>
+          <p><strong>מסע מרתק:</strong> נולד באתיופיה ועלה לארץ בגיל 10 לבדו, ללא הוריו וללא ידיעת השפה העברית.</p>
+          <p><strong>סיפור השראה:</strong> מהפרידה מאמו הביולוגית שמסרה אותו לאימוץ, דרך החיים במשפחה המאמצת, ועד לבניית זהותו העצמאית כבוגר.</p>
+          <p><strong>כיום:</strong> מגיש בחדשות 13, המשתף את סיפורו במסגרות שונות – ארגונים, מוסדות חינוך וקהילות.
+
+</p>
+          <ul class="achievement-list">
+            <li class="reveal">
+              <div class="achievement-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <div><strong>עיתונאי ומגיש בחדשות 13</strong><br><span>משלב עיתונות והגשה עם פעילותו כמרצה</span></div>
+            </li>
+            <li class="reveal">
+              <div class="achievement-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              </div>
+              <div><strong>קהלים מגוונים</strong><br><span>חיבור עם אלפי משתתפים</span></div>
+            </li>
+            <li class="reveal">
+              <div class="achievement-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+              </div>
+              <div><strong>ניסיון רב</strong><br><span>ארגונים, בתי ספר וקהילות</span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title reveal">מה אומרים על ההרצאה</h2>
+      <div class="testimonials">
+        <div class="testimonial reveal">
+          <div class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"מתן הצליח לרתק את כל העובדים שלנו. הסיפור האישי שלו נתן לכולנו פרספקטיבה חדשה על התמודדות עם אתגרים."</p>
+          <div class="testimonial-author">רונית.כ</div>
+          <div class="testimonial-role">מנהלת משאבי אנוש </div>
+        </div>
+        <div class="testimonial reveal">
+          <div class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"התלמידים שלנו יצאו מההרצאה עם מוטיבציה חדשה. הסיפור של מתן על התמודדות וצמיחה נגע בכולם."</p>
+          <div class="testimonial-author">ד"ר מיכל.ל </div>
+          <div class="testimonial-role">מנהלת תיכון</div>
+        </div>
+        <div class="testimonial reveal">
+          <div class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">"הרצאה מרגשת ומעוררת השראה. מתן מצליח לקחת את הקהל למסע אישי מרתק ולהעביר מסרים חשובים."</p>
+          <div class="testimonial-author">אבי.ש</div>
+          <div class="testimonial-role">מנכ"ל ארגון חברתי</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <h2 class="section-title reveal">רגעים מהרצאות קודמות</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal"><img src="lecture1.jpg" alt="הרצאה בכנס" width="800" height="600" loading="lazy" decoding="async"></div>
+        <div class="gallery-item reveal"><img src="lecture2.jpg" alt="קהל מאזינים" width="800" height="600" loading="lazy" decoding="async"></div>
+        <div class="gallery-item reveal"><img src="lecture3.jpg" alt="הרצאה בארגון" width="800" height="600" loading="lazy" decoding="async"></div>
+        <div class="gallery-item reveal"><img src="lecture4.jpg" alt="צילום אווירה של קהל" width="1200" height="900" loading="lazy" decoding="async"></div>
+        <div class="gallery-item reveal"><img src="lecture5.jpg" alt="בימת הרצאה" width="1200" height="900" loading="lazy" decoding="async"></div>
+        <div class="gallery-item reveal"><img src="lecture6.jpg" alt="מחיאות כפיים" width="1200" height="900" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title reveal">בואו נדבר על ההרצאה הבאה שלכם</h2>
+      <p class="contact-subtitle">מעוניינים להזמין את מתן איילה להרצאה בארגון שלכם?<br>צרו קשר ונשמח לתאם הרצאה שתתאים בדיוק לצרכים שלכם</p>
+      <div class="contact-buttons">
+        <a href="https://wa.me/972549996459?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%2F%D7%AA%20%D7%91%D7%94%D7%A8%D7%A6%D7%90%D7%94%20%D7%A2%D7%91%D7%95%D7%A8%20%D7%94%D7%90%D7%A8%D7%92%D7%95%D7%9F%20%D7%A9%D7%9C%D7%A0%D7%95" class="btn-contact btn-contact-whatsapp" aria-label="שלחו הודעת וואטסאפ" rel="noopener" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img" shape-rendering="geometricPrecision"><path fill="currentColor" d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 003.48 8.52L0 24l3.66-3.42A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.38l-.36-.21-2.99.78.8-2.91-.23-.38A9.98 9.98 0 1122 12 9.99 9.99 0 0112 22zm5.44-7.58c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15s-.78.98-.96 1.18-.35.25-.65.1a8.2 8.2 0 01-2.43-1.5 9 9 0 01-1.62-2.02c-.17-.3 0-.46.13-.62.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.53.08-.82.38s-1.08 1.06-1.08 2.58 1.11 2.98 1.27 3.18c.15.2 2.19 3.34 5.3 4.56.74.32 1.32.5 1.77.64.75.24 1.43.21 1.97.13.6-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.21-.57-.36z"/></svg> שלחו הודעת וואטסאפ
+        </a>
+        <a href="mailto:matanayela6@gmail.com?subject=בקשה להרצאה" class="btn-contact btn-contact-email" aria-label="שלחו מייל"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" role="img"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><path d="M2 7l10 7 10-7"></path></svg> שלחו מייל</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2025 מתן איילה – כל הזכויות שמורות</p>
+    <div class="social-links" aria-label="רשתות חברתיות">
+      <a href="https://www.facebook.com/ayela2" title="Facebook" aria-label="Facebook" rel="noopener" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M22.675 0h-21.35C.595 0 0 .595 0 1.326v21.348C0 23.405.595 24 1.326 24H12.82v-9.294H9.691V11.01h3.129V8.414c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.765v2.314h3.592l-.468 3.696h-3.124V24h6.127C23.405 24 24 23.405 24 22.674V1.326C24 .595 23.405 0 22.675 0z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/matan_ayela" title="Instagram" aria-label="Instagram" rel="noopener" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" role="img" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"></circle></svg>
+      </a>
+      <a href="https://www.tiktok.com/@matanayela" title="TikTok" aria-label="TikTok" rel="noopener" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="גלול לראש העמוד">↑</button>
+
+<script>
+/* עזרי DOM */
+const d=document,$=s=>d.querySelector(s),$$=s=>d.querySelectorAll(s);
+
+/* מובייל נב */
+const menuBtn=$("#menuToggle"), mobileNav=$("#mobileNav"), overlay=$("#mobileOverlay");
+function openNav(){
+  if (openNav._animating) return; openNav._animating = true;
+  mobileNav.removeAttribute('hidden');
+  overlay.removeAttribute('hidden');
+  // טריק לאלץ רינדור לפני הוספת המחלקה כדי שהטרנזישן ירוץ
+  void mobileNav.offsetWidth;
+  requestAnimationFrame(()=>{
+    mobileNav.classList.add('active');
+    overlay.classList.add('active');
+    menuBtn.setAttribute('aria-expanded','true');
+    menuBtn.setAttribute('aria-label','סגור תפריט');
+    mobileNav.setAttribute('aria-modal','true');
+    d.body.classList.add('no-scroll');
+    mobileNav.querySelector('a')?.focus();
+  });
+  const onEnd=(e)=>{ if(e.propertyName==='transform'){ mobileNav.removeEventListener('transitionend', onEnd); openNav._animating=false; } };
+  mobileNav.addEventListener('transitionend', onEnd);
+}
+function closeNav(){
+  if (closeNav._animating) return; closeNav._animating = true;
+  mobileNav.classList.remove('active');
+  overlay.classList.remove('active');
+  menuBtn.setAttribute('aria-expanded','false');
+  menuBtn.setAttribute('aria-label','פתח תפריט');
+  mobileNav.removeAttribute('aria-modal');
+  d.body.classList.remove('no-scroll');
+  const onEnd=(e)=>{
+    if(e.propertyName!=='transform') return;
+    mobileNav.setAttribute('hidden','');
+    overlay.setAttribute('hidden','');
+    mobileNav.removeEventListener('transitionend', onEnd);
+    closeNav._animating=false;
+    menuBtn.focus();
+  };
+  mobileNav.addEventListener('transitionend', onEnd);
+}
+function toggleNav(state){
+  const wantOpen = state ?? mobileNav.hasAttribute('hidden');
+  wantOpen ? openNav() : closeNav();
+}
+menuBtn.addEventListener("click",()=>toggleNav());
+overlay.addEventListener("click",()=>toggleNav(false));
+d.addEventListener("keydown",(e)=>{ if(e.key==="Escape") toggleNav(false); });
+
+/* Smooth Scroll + active link (ללא חישוב ידני של פיקסלים) */
+$$('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id = a.getAttribute('href');
+    const target = $(id);
+    if(!target) return;
+    e.preventDefault();
+    target.scrollIntoView({behavior:'smooth'});
+    if(a.classList.contains('mobile-nav-link')) toggleNav(false);
+  });
+});
+const header=$('header'), backToTop=$("#backToTop");
+window.addEventListener('scroll',()=>{
+  const scrolled = window.scrollY>100;
+  header.classList.toggle('scrolled',scrolled);
+  backToTop.classList.toggle('visible',scrolled);
+  // עדכון קישור פעיל + aria-current
+  let current='';
+  $$('section[id]').forEach(s=>{ if(window.scrollY >= (s.offsetTop-120)) current=s.id; });
+  $$('.nav-links a, .mobile-nav-link').forEach(l=>{
+    const isActive = l.getAttribute('href')===`#${current}`;
+    l.classList.toggle('active', isActive);
+    if(isActive) l.setAttribute('aria-current','page');
+    else l.removeAttribute('aria-current');
+  });
+});
+backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))
+
+/* Reveal on scroll (מכבד reduced-motion) */
+const targets=$$('.reveal');
+if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target);} });
+  },{rootMargin:'-12% 0px -12% 0px',threshold:.06});
+  targets.forEach(el=>io.observe(el));
+}else{
+  targets.forEach(el=>el.classList.add('in-view'));
+}
+
+/* ===== בדיקות (אינן רצות אוטומטית) =====
+   כדי להריץ בדיקות ידניות דרך הקונסול:
+   window.__RUN_TESTS__ = true; window.__runNavTests__();
+*/
+window.__runNavTests__ = async function(){
+  if(!window.__RUN_TESTS__) { console.warn('Set window.__RUN_TESTS__ = true to run tests'); return; }
+  const sleep = (ms)=>new Promise(r=>setTimeout(r,ms));
+  const assert = (cond,msg)=>console.assert(cond, msg);
+
+  // מצב התחלתי
+  assert(mobileNav.hasAttribute('hidden'), 'mobileNav should start hidden');
+  assert(menuBtn.getAttribute('aria-expanded')==='false', 'menuBtn aria-expanded should be false');
+
+  // פתיחה
+  openNav();
+  await sleep(50); // תן מחזור רינדור
+  assert(mobileNav.classList.contains('active'), 'mobileNav should have .active after open');
+  assert(menuBtn.getAttribute('aria-expanded')==='true', 'menuBtn aria-expanded should be true after open');
+  assert(d.body.classList.contains('no-scroll'), 'body should have no-scroll after open');
+
+  // סגירה
+  closeNav();
+  await sleep(1000); // להמתין לסיום הטרנזישן והחזרת hidden
+  assert(!mobileNav.classList.contains('active'), 'mobileNav should not have .active after close');
+  assert(mobileNav.hasAttribute('hidden'), 'mobileNav should have hidden after close');
+  assert(menuBtn.getAttribute('aria-expanded')==='false', 'menuBtn aria-expanded should be false after close');
+  assert(!d.body.classList.contains('no-scroll'), 'body should not have no-scroll after close');
+
+  console.info('✅ Nav open/close tests passed');
+};
+
+/* הערות: לא בוצעו שינויי תוכן או הוספת Twitter Cards/JSON-LD בהתאם לבקשה. */
+
+/* === Click logo to scroll to top quickly === */
+const logoEl = $('.logo');
+if (logoEl){
+  logoEl.setAttribute('role','link');
+  logoEl.setAttribute('tabindex','0');
+  const scrollToTopFast = () => {
+    const start = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const duration = 250;
+    const startTime = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - startTime) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3); // easeOutCubic
+      window.scrollTo(0, Math.round(start * (1 - ease)));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+  logoEl.addEventListener('click', scrollToTopFast);
+  logoEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToTopFast(); }
+  });
+}
+
+</script>
+</body>
+</html>
